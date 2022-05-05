@@ -14,7 +14,7 @@ done = False
 # bgImg = os.path.join('/Users/aoomimkonnaiwaaa/Simulation Project/Projectile-Simulation/background-01.png')
 # background = pygame.image.load(bgImg)
 # DISPLAYSURF.blit(background, (1280,720))
-#bgImg = pygame.image.load('/Users/aoomimkonnaiwaaa/Simulation Project/Projectile-Simulation/background-01.png')
+bgImg = pygame.image.load('background-01.png')
 DISPLAYSURF.blit(bgImg, (1280,720))
 
 v0 = 5.536 

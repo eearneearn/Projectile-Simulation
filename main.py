@@ -2,7 +2,7 @@ from email.mime import image
 from tkinter import *
 from calculation import simulationCal
 import math
-import windows2
+# import windows2
 
 # from tkinter import ttk
 # import tkinter as tk
@@ -16,6 +16,7 @@ win1.resizable(False,False)
 #icon
 win1.iconbitmap("shooter.ico")
 
+#startPage
 #subsample(2,2)=ลดขนาดรูป zoom(2,2)=เพิ่มขนาดรูป
 # create bg
 canvas = Canvas(win1,width=1280,height=720)
@@ -59,8 +60,44 @@ def open_popup():
     box_springAmount.delete(0,END)
 
 def nextPage(event):
-    win1.withdraw()
-    windows2.win2.deiconify()
+    win2 = Toplevel(win1)
+    win2.title("Member") #title
+    win2.geometry("1280x720") #ขนาดจอ
+    # win1.configure(background='#E7E9F5') #bg
+    win2.resizable(False,False)
+
+    #icon
+    win2.iconbitmap("shooter.ico")
+    
+    canvas = Canvas(win2,width=1280,height=720)
+    canvas.pack()
+    bgImg=PhotoImage(file="memberPage.png")
+    canvas.create_image(640,360,image=bgImg,anchor=CENTER)
+    canvas.image = bgImg
+    
+    def closePage(event):
+        win2.destroy()
+
+    #subsample(2,2)=ลดขนาดรูป zoom(2,2)=เพิ่มขนาดรูป
+    # create bg
+    
+    # canvas = Canvas(win2,width=1280,height=720)
+    # canvas.pack()
+    # bg=PhotoImage(file="background-01.png")
+    # # Label(win2, image=bg)
+    # # background.grid(row=0,column=1,padx=10,pady=10)
+    # canvas.create_image(640,360,anchor=CENTER)
+    # canvas.image = bg
+
+    # back = PhotoImage(file="backbutton.png").subsample(2,2) # set image path
+    # b = canvas.create_image(150,630,image=back)
+    # canvas.tag_bind(b, "<Button-1>", backPage)
+
+    close = PhotoImage(file="closebutton.png").subsample(2,2) # set image path
+    c = canvas.create_image(1130,630,image=close)
+    canvas.tag_bind(c, "<Button-1>", closePage)
+    c.image = close
+    
 
 def button_clear(event):
     box_iniVeloLabel.config(state='normal')
@@ -152,8 +189,8 @@ clear = PhotoImage(file="ClearButton.png") # set image path
 cl = canvas.create_image(1130,370,image=clear)
 canvas.tag_bind(cl, "<Button-1>", button_clear)
 
-next = PhotoImage(file="nextButton.png") # set image path
-n = canvas.create_image(1150,670,image=next)
+next = PhotoImage(file="memberbutton.png") # set image path
+n = canvas.create_image(180,100,image=next)
 canvas.tag_bind(n, "<Button-1>", nextPage)
 
 # next = PhotoImage(file="ClearButton.png") # set image path
@@ -206,8 +243,5 @@ box_springLenLabel.config(state='disabled')
 #             angle=box_angle.get()
 #         else:
 #             open_popup
-
-
-
 
 win1.mainloop()
