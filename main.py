@@ -14,7 +14,7 @@ win1.geometry("1280x720") #ขนาดจอ
 win1.resizable(False,False)
 
 #icon
-win1.iconbitmap("shooter.ico")
+# win1.iconbitmap("shooter.ico")
 
 #subsample(2,2)=ลดขนาดรูป zoom(2,2)=เพิ่มขนาดรูป
 # create bg
