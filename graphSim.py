@@ -1,9 +1,6 @@
-import pygame
-import sys
 from pygame.locals import *
 import pygame.math # for vector2
 import math
-import os
 # import main
 # import calculation
 
@@ -33,11 +30,10 @@ shooterIcon = pygame.image.load('shooter.ico')
 pygame.display.set_icon(shooterIcon)
  
 v0 = 5.536 #initial velocity
-h = 0.4 #sy from start
+h = 0 #sy from start
 alpha = 60 #angle
 timestep = 0.006
 gravity = -9.81 #down
-datum = -h
 init_accel = pygame.Vector2(0,gravity)
 
 #Calculation
@@ -53,9 +49,10 @@ while not done: # main game loop
             done = True
             pressed = pygame.key.get_pressed()
                        
-    pos = init_pos + (init_vel * time) + ((1/2) * init_accel * time ** 2) # s = intialPostion + ut + (1/2at^2)
-    time = time + timestep
-    if pos.y >= - 0.9 : # บวกเพิ่ม - 0.7
+   
+    if pos.y >= - 0.2 : # บวกเพิ่ม - 0.7 
+        pos = init_pos + (init_vel * time) + ((1/2) * init_accel * time ** 2) # s = intialPostion + ut + (1/2at^2)
+        time = time + timestep
         pygame.draw.circle(DISPLAYSURF,(255,255,255),[230 + pos.x * 280,490 - pos.y * 100],4.5) # y ต้องเป็นลบ เพราะทิศลง
     pygame.display.update()
     print(pos.y)
