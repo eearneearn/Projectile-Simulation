@@ -26,7 +26,7 @@ DISPLAYSURF.blit(bgImg,(90,435))
 
 #goal
 bgImg = pygame.image.load('goalNew.png')
-DISPLAYSURF.blit(bgImg,(900,435))
+DISPLAYSURF.blit(bgImg,(900,500))
 
 #icon
 shooterIcon = pygame.image.load('shooter.ico')
