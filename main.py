@@ -169,6 +169,18 @@ def button_function(event): #check range
         open_popup()
         print("run except")
 
+# def showGraph(event):
+#     xaxis = float(box_xaxis.get())
+#     yaxis = float(box_yaxis.get())
+#     mass = float(box_mass.get())
+#     springconst = float(box_springconst.get())
+#     springAmount = int(box_springAmount.get())
+#     distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
+#     initialVelo = distanceX.projectileCal()
+
+#     graphSim = bulletSim(initialVelo,xaxis,yaxis)
+#     return graphSim.bullet
+
 # Use CTkButton instead of tkinter Button
 output = PhotoImage(file="output.png") # set image path
 op = canvas.create_image(1100,405,image=output)
@@ -188,6 +200,10 @@ canvas.tag_bind(ccl, "<Button-1>", button_function)
 clear = PhotoImage(file="ClearButton.png") # set image path
 cl = canvas.create_image(1130,370,image=clear)
 canvas.tag_bind(cl, "<Button-1>", button_clear)
+
+Graph = PhotoImage(file="ClearButton.png") # set image path
+g = canvas.create_image(1130,400,image=Graph)
+canvas.tag_bind(g, "<Button-1>", showGraph)
 
 next = PhotoImage(file="memberbutton.png") # set image path
 n = canvas.create_image(180,100,image=next)
