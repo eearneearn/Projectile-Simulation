@@ -2,32 +2,24 @@ from pygame.locals import *
 import pygame.math # for vector2
 import math
 # import main
-# import calculation
-
-g = -9.81 #down
 
 class bulletSim:
-    def __init__(self,initialVelo,angle,timestep,x,y,bullet,position):
-        self.initialVelo = 5.536 #initial velocity
-        self.y_axis = 0 #sy from start
-        self.angle = 60 #angle
+    def __init__(self,initialVelo,x,y):
         self.timestep = 0.01
         self.time = 0
-        self.initialAccel = pygame.Vector2(0,g)
-        self.initialVelo2 = pygame.Vector2(math.cos(angle * math.pi/180)*initialVelo,math.sin(angle * math.pi/180)*initialVelo)
-        self.initialPost = pygame.Vector2(0,y_axis) # x_axis,y_axis
-        self.position = pygame.Vector2()
+        self.initialAccel = pygame.Vector2(0,-9.81) #down
+        self.initialVelo2 = pygame.Vector2(math.cos(60 * math.pi/180)*initialVelo,math.sin(60 * math.pi/180)*initialVelo)
+        self.position = pygame.Vector2(x,y) # x_axis,y_axis
         self.bulletImg = pygame.bulletImg.load('bullet.png')
-        self.position = self.position
     
     def draw(self,surface):
-        pygame.draw.circle(DISPLAYSURF,(38,255,0),[250 + position.x * 280,500 - position.y * 150],4.5) # y ต้องเป็นลบ เพราะทิศลง
-        surface.blit(self.bulletImg, [self. position.x * 280 + 250 ,500 - position.y * 150])
+        pygame.draw.circle(DISPLAYSURF,(38,255,0),[250 + self.position.x * 280,500 - self.position.y * 150],4.5) # y ต้องเป็นลบ เพราะทิศลง
+        surface.blit(self.bulletImg, [self.position.x * 280 + 250 ,500 - self.position.y * 150])
     
     def update(self):
         if self.position.y >= - 0.2 : 
-            self.position = self.initialPost + (self.initialVelo2 * self.time) + ((1/2) * self.initialAccel * self.time ** 2) # s = intialPostion + ut + (1/2at^2)
-            self.time = self.time + self.timestep
+            self.position = self.position + (self.initialVelo2 * self.time) + ((1/2) * self.initialAccel * self.time ** 2) # s = intialPostion + ut + (1/2at^2)
+            self.time = self.time + self.timestep 
             
                         
 # pygame.init()
