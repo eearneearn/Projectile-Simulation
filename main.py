@@ -1,4 +1,5 @@
 from email.mime import image
+from platform import freedesktop_os_release
 from tkinter import *
 from calculation import simulationCal
 import math
@@ -40,8 +41,8 @@ goal = PhotoImage(file="goal.png") # set image path
 canvas.create_image(1100,600,image=goal)
 
 # create shoot
-shoot = PhotoImage(file="shooter.png").subsample(2,2)
-canvas.create_image(160,540,image=shoot)
+shoot = PhotoImage(file="shooterGraph2.png")
+canvas.create_image(210,530,image=shoot)
 
 # create output
 # def button_function(event):
@@ -154,8 +155,8 @@ def saveData(event):
         open_popup()
         print("run except")
 
-Save = PhotoImage(file="ClearButton.png") # set image path
-s = canvas.create_image(100,370,image=Save)
+Save = PhotoImage(file="savebutton.png") # set image path
+s = canvas.create_image(180,170,image=Save)
 canvas.tag_bind(s, "<Button-1>", saveData)
 
 def button_clear(event):
@@ -273,6 +274,9 @@ op = canvas.create_image(1100,405,image=output)
 input = PhotoImage(file="input.png") # set image path
 ip = canvas.create_image(1100,50,image=input)
 
+freepik = PhotoImage(file="freepoklogo.png").subsample(4,4) # set image path
+fp = canvas.create_image(640,682,image=freepik)
+
 # create Calculate
 # Use CTkButton instead of tkinter Button
 calculate = PhotoImage(file="Calculate Button.png").subsample(3,3) # set image path
@@ -285,13 +289,13 @@ cl = canvas.create_image(1130,370,image=clear)
 canvas.tag_bind(cl, "<Button-1>", button_clear)
 
 # showGraph = graphSim.showGraph(initialVelo, xaxis, yaxis)
-Graph = PhotoImage(file="ClearButton.png") # set image path
-g = canvas.create_image(1130,400,image=Graph)
+Graph = PhotoImage(file="graphbutton.png").subsample(2,2) # set image path
+g = canvas.create_image(1100,530,image=Graph)
 canvas.tag_bind(g, "<Button-1>", showGraph)
 
-next = PhotoImage(file="memberbutton.png") # set image path
-n = canvas.create_image(180,100,image=next)
-canvas.tag_bind(n, "<Button-1>", nextPage)
+member = PhotoImage(file="memberbutton.png") # set image path
+m = canvas.create_image(180,100,image=member)
+canvas.tag_bind(m, "<Button-1>", nextPage)
 
 # next = PhotoImage(file="ClearButton.png") # set image path
 # n = canvas.create_image(1130,350,image=clear)
