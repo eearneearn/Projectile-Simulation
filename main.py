@@ -2,6 +2,7 @@ from email.mime import image
 from tkinter import *
 from calculation import simulationCal
 import math
+import graphSim
 # import windows2
 
 # from tkinter import ttk
@@ -142,12 +143,10 @@ def button_function(event): #check range
             springAmount = int(box_springAmount.get())
             print(springAmount)
         else:
-            checkInput=False
-        if checkInput:
+            checkInput=True
+        if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
             open_popup()
-        
-        if yaxis/xaxis > math.cos(60 * (math.pi/180)):
-            open_popup()
+            checkInput = False
 
         distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
         initialVelo = distanceX.projectileCal()
@@ -169,17 +168,45 @@ def button_function(event): #check range
         open_popup()
         print("run except")
 
-# def showGraph(event):
-#     xaxis = float(box_xaxis.get())
-#     yaxis = float(box_yaxis.get())
-#     mass = float(box_mass.get())
-#     springconst = float(box_springconst.get())
-#     springAmount = int(box_springAmount.get())
-#     distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
-#     initialVelo = distanceX.projectileCal()
+def showGraph(event):
+    checkInput = False
+    try:
+        if 0<=float(box_xaxis.get())<=10:
+            xaxis = float(box_xaxis.get())
+            print(xaxis)
+        else:
+            checkInput=True
+        if 0<=float(box_yaxis.get())<=10:
+            yaxis = float(box_yaxis.get())
+            print(yaxis)
+        else:
+            checkInput=True
+        if 0 < float(box_mass.get()) <= 1000:
+            mass = float(box_mass.get())
+            print(mass)
+        else:
+            checkInput=True
+        if 0<=float(box_springconst.get())<=2500:
+            springconst = float(box_springconst.get())
+            print(springconst)
+        else:
+            checkInput=True
+        if 0<=int(box_springAmount.get())<=20: 
+            springAmount = int(box_springAmount.get())
+            print(springAmount)
+        else:
+            checkInput=True
+        if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
+            open_popup()
+            checkInput = False
 
-#     graphSim = bulletSim(initialVelo,xaxis,yaxis)
-#     return graphSim.bullet
+        distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
+        initialVelo = distanceX.projectileCal()
+        showGraph = graphSim.showGraph(initialVelo, yaxis)
+        
+    except ValueError:
+        open_popup()
+        print("run except")
 
 # Use CTkButton instead of tkinter Button
 output = PhotoImage(file="output.png") # set image path
@@ -201,6 +228,7 @@ clear = PhotoImage(file="ClearButton.png") # set image path
 cl = canvas.create_image(1130,370,image=clear)
 canvas.tag_bind(cl, "<Button-1>", button_clear)
 
+# showGraph = graphSim.showGraph(initialVelo, xaxis, yaxis)
 Graph = PhotoImage(file="ClearButton.png") # set image path
 g = canvas.create_image(1130,400,image=Graph)
 canvas.tag_bind(g, "<Button-1>", showGraph)
