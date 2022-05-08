@@ -9,7 +9,7 @@ import graphSim
 # import tkinter as tk
 
 win1 = Tk()
-win1.title("Simulation") #title
+win1.title("The Amazing Circus: Projectile Simulation") #title
 win1.geometry("1280x720") #ขนาดจอ
 # win1.configure(background='#E7E9F5') #bg
 win1.resizable(False,False)
@@ -146,7 +146,6 @@ def button_function(event): #check range
             checkInput=True
         if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
             open_popup()
-            checkInput = False
 
         distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
         initialVelo = distanceX.projectileCal()
@@ -198,11 +197,10 @@ def showGraph(event):
             checkInput=True
         if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
             open_popup()
-            checkInput = False
 
         distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
-        initialVelo = distanceX.projectileCal()
-        showGraph = graphSim.showGraph(initialVelo, yaxis)
+        initialVelo = float(distanceX.projectileCal())
+        graphSim.showGraph(initialVelo, yaxis)
         
     except ValueError:
         open_popup()

@@ -13,7 +13,7 @@ class bulletSim:
         self.position = pygame.Vector2() # x_axis,y_axis
     
     def draw(self,surface):
-        pygame.draw.circle(surface,(38,255,0),[250 + self.position.x * 280,500 - self.position.y * 150],4.5) # y ต้องเป็นลบ เพราะทิศลง
+        pygame.draw.circle(surface,(38,255,0),[245 + self.position.x * 280,510 - self.position.y * 165],4.5) # y ต้องเป็นลบ เพราะทิศลง
     
     def update(self):
         if self.position.y >= - 0.2 : 

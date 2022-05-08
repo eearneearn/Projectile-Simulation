@@ -40,4 +40,4 @@ def showGraph(initialVelo,y):
         pygame.display.update()   
     pygame.quit()  
 
-#showGraph(5.536, 0.2) 
+showGraph(5.536, 0.2) 
