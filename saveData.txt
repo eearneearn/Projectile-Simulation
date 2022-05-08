@@ -1,0 +1,8 @@
+x axis: 2.585 m
+y axis: 0.2 m
+mass: 187.0 g
+spring constant: 803.6 N/m
+spring amount: 2
+initial velocity: 5.536 m/s
+time: 0.934 s
+spring length: 0.061 m

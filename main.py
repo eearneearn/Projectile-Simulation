@@ -2,13 +2,14 @@ from email.mime import image
 from tkinter import *
 from calculation import simulationCal
 import math
+import graphSim
 # import windows2
 
 # from tkinter import ttk
 # import tkinter as tk
 
 win1 = Tk()
-win1.title("Simulation") #title
+win1.title("The Amazing Circus: Projectile Simulation") #title
 win1.geometry("1280x720") #ขนาดจอ
 # win1.configure(background='#E7E9F5') #bg
 win1.resizable(False,False)
@@ -98,6 +99,64 @@ def nextPage(event):
     canvas.tag_bind(c, "<Button-1>", closePage)
     c.image = close
     
+def saveData(event):
+    checkInput = False
+    try:
+        if 0<=float(box_xaxis.get())<=10:
+            xaxis = float(box_xaxis.get())
+            print(xaxis)
+        else:
+            checkInput=True
+        if 0<=float(box_yaxis.get())<=10:
+            yaxis = float(box_yaxis.get())
+            print(yaxis)
+        else:
+            checkInput=True
+        if 0 < float(box_mass.get()) <= 1000:
+            mass = float(box_mass.get())
+            print(mass)
+        else:
+            checkInput=True
+        if 0<=float(box_springconst.get())<=2500:
+            springconst = float(box_springconst.get())
+            print(springconst)
+        else:
+            checkInput=True
+        if 0<=int(box_springAmount.get())<=20: 
+            springAmount = int(box_springAmount.get())
+            print(springAmount)
+        else:
+            checkInput=False
+        if checkInput:
+            open_popup()
+        
+        if yaxis/xaxis > math.cos(60 * (math.pi/180)):
+            open_popup()
+
+        distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
+        initialVelo = distanceX.projectileCal()
+        lenX = distanceX.springCal()
+        time = distanceX.timeCal()
+        file = open("saveData.txt","w")
+    
+        file.write("x axis: " + str(xaxis) + " m" + "\n")
+        file.write("y axis: " + str(yaxis) + " m" + "\n")
+        file.write("mass: " + str(mass) + " g"+ "\n")
+        file.write("spring constant: " + str(springconst) + " N/m" + "\n")
+        file.write("spring amount: " + str(springAmount) + "\n")
+        file.write("initial velocity: " + str(initialVelo) + " m/s" + "\n")
+        file.write("time: " + str(time) + " s" + "\n")
+        file.write("spring length: " + str(lenX) + " m" + "\n")
+        
+        file.close()
+
+    except ValueError:
+        open_popup()
+        print("run except")
+
+Save = PhotoImage(file="ClearButton.png") # set image path
+s = canvas.create_image(100,370,image=Save)
+canvas.tag_bind(s, "<Button-1>", saveData)
 
 def button_clear(event):
     box_iniVeloLabel.config(state='normal')
@@ -142,11 +201,8 @@ def button_function(event): #check range
             springAmount = int(box_springAmount.get())
             print(springAmount)
         else:
-            checkInput=False
-        if checkInput:
-            open_popup()
-        
-        if yaxis/xaxis > math.cos(60 * (math.pi/180)):
+            checkInput=True
+        if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
             open_popup()
 
         distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
@@ -169,17 +225,44 @@ def button_function(event): #check range
         open_popup()
         print("run except")
 
-# def showGraph(event):
-#     xaxis = float(box_xaxis.get())
-#     yaxis = float(box_yaxis.get())
-#     mass = float(box_mass.get())
-#     springconst = float(box_springconst.get())
-#     springAmount = int(box_springAmount.get())
-#     distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
-#     initialVelo = distanceX.projectileCal()
+def showGraph(event):
+    checkInput = False
+    try:
+        if 0<=float(box_xaxis.get())<=10:
+            xaxis = float(box_xaxis.get())
+            print(xaxis)
+        else:
+            checkInput=True
+        if 0<=float(box_yaxis.get())<=10:
+            yaxis = float(box_yaxis.get())
+            print(yaxis)
+        else:
+            checkInput=True
+        if 0 < float(box_mass.get()) <= 1000:
+            mass = float(box_mass.get())
+            print(mass)
+        else:
+            checkInput=True
+        if 0<=float(box_springconst.get())<=2500:
+            springconst = float(box_springconst.get())
+            print(springconst)
+        else:
+            checkInput=True
+        if 0<=int(box_springAmount.get())<=20: 
+            springAmount = int(box_springAmount.get())
+            print(springAmount)
+        else:
+            checkInput=True
+        if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
+            open_popup()
 
-#     graphSim = bulletSim(initialVelo,xaxis,yaxis)
-#     return graphSim.bullet
+        distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
+        initialVelo = float(distanceX.projectileCal())
+        graphSim.showGraph(initialVelo, yaxis)
+        
+    except ValueError:
+        open_popup()
+        print("run except")
 
 # Use CTkButton instead of tkinter Button
 output = PhotoImage(file="output.png") # set image path
@@ -201,6 +284,7 @@ clear = PhotoImage(file="ClearButton.png") # set image path
 cl = canvas.create_image(1130,370,image=clear)
 canvas.tag_bind(cl, "<Button-1>", button_clear)
 
+# showGraph = graphSim.showGraph(initialVelo, xaxis, yaxis)
 Graph = PhotoImage(file="ClearButton.png") # set image path
 g = canvas.create_image(1130,400,image=Graph)
 canvas.tag_bind(g, "<Button-1>", showGraph)
