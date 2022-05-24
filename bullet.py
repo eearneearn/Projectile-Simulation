@@ -6,6 +6,7 @@ import math
 class bulletSim:
     def __init__(self,initialVelo,y):
         self.timestep = 0.006
+        self.y = y
         self.time = 0
         self.initialAccel = pygame.Vector2(0,-9.81) #down
         self.initialVelo2 = pygame.Vector2(math.cos(60 * math.pi/180)*initialVelo,math.sin(60 * math.pi/180)*initialVelo)
@@ -16,7 +17,7 @@ class bulletSim:
         pygame.draw.circle(surface,(38,255,0),[245 + self.position.x * 280,510 - self.position.y * 165],4.5) # y ต้องเป็นลบ เพราะทิศลง
     
     def update(self):
-        if self.position.y >= - 0.2 : 
+        if self.position.y >= -0.2 : # base on catapult
             self.position = self.initialPost + (self.initialVelo2 * self.time) + ((1/2) * self.initialAccel * self.time ** 2) # s = intialPostion + ut + (1/2at^2)
             self.time = self.time + self.timestep 
             
