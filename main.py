@@ -280,12 +280,12 @@ fp = canvas.create_image(640,682,image=freepik)
 # create Calculate
 # Use CTkButton instead of tkinter Button
 calculate = PhotoImage(file="Calculate Button.png").subsample(3,3) # set image path
-ccl = canvas.create_image(1080,370,image=calculate)
+ccl = canvas.create_image(1080,378,image=calculate)
 canvas.tag_bind(ccl, "<Button-1>", calClick)
 
 # create Clear
 clear = PhotoImage(file="ClearButton.png") # set image path
-cl = canvas.create_image(1130,370,image=clear)
+cl = canvas.create_image(1130,378,image=clear)
 canvas.tag_bind(cl, "<Button-1>", button_clear)
 
 # showGraph = graphSim.showGraph(initialVelo, xaxis, yaxis)
