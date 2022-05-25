@@ -1,5 +1,5 @@
 from email.mime import image
-from platform import freedesktop_os_release
+# from platform import freedesktop_os_release
 from tkinter import *
 from calculation import simulationCal
 import math
@@ -171,7 +171,7 @@ def button_clear(event):
     box_timeLabel.config(state='disabled')
     box_springLenLabel.config(state='disabled')
 
-def button_function(event): #check range
+def calClick(event): #check range
     checkInput = False
     try:
         if 0<=float(box_xaxis.get())<=10:
@@ -281,7 +281,7 @@ fp = canvas.create_image(640,682,image=freepik)
 # Use CTkButton instead of tkinter Button
 calculate = PhotoImage(file="Calculate Button.png").subsample(3,3) # set image path
 ccl = canvas.create_image(1080,370,image=calculate)
-canvas.tag_bind(ccl, "<Button-1>", button_function)
+canvas.tag_bind(ccl, "<Button-1>", calClick)
 
 # create Clear
 clear = PhotoImage(file="ClearButton.png") # set image path
