@@ -29,7 +29,7 @@ frame = canvas.create_image(1100,220,image=purpleFrame)
 
 # create purpleFrame2
 purpleFrame2 = PhotoImage(file="newoutput.png") # set image path
-frame2 = canvas.create_image(1100,450,image=purpleFrame2)
+frame2 = canvas.create_image(1100,455,image=purpleFrame2)
 # canvas.tag_bind(frame2)
 
 # create goal
@@ -267,7 +267,7 @@ def showGraph(event):
 
 # Use CTkButton instead of tkinter Button
 output = PhotoImage(file="output.png") # set image path
-op = canvas.create_image(1100,405,image=output)
+op = canvas.create_image(1100,410,image=output)
 # canvas.tag_bind(button, "<Button-1>", button_function)
 
 # create input
@@ -313,17 +313,17 @@ box_springAmount = Entry(win1)
 box_springAmount.place(x = 1092,y = 327,width=45,height=20)
 
 box_iniVeloLabel = Entry(win1)
-box_iniVeloLabel.place(x = 1111,y = 417,width=45,height=20)
+box_iniVeloLabel.place(x = 1111,y = 427,width=45,height=20)
 
 box_iniVeloLabel.config(state='disabled')
 
 box_timeLabel = Entry(win1)
-box_timeLabel.place(x = 1111,y = 441,width=45,height=20)
+box_timeLabel.place(x = 1111,y = 450,width=45,height=20)
 
 box_timeLabel.config(state='disabled')
 
 box_springLenLabel = Entry(win1)
-box_springLenLabel.place(x = 1111,y = 464,width=45,height=20)
+box_springLenLabel.place(x = 1111,y = 473,width=45,height=20)
 
 box_springLenLabel.config(state='disabled')
 
