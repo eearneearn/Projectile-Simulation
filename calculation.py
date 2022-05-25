@@ -1,9 +1,9 @@
 import math
 
 class simulationCal:
-    def __init__(self,x_axis,y_axis,springConst,springAmount,g,mass):
+    def __init__(self,x_axis,springConst,springAmount,g,mass):
         self.x_axis = x_axis
-        self.y_axis = y_axis
+        # self.y_axis = y_axis
         self.springConst = springConst
         self.springAmount = springAmount
         self.initialVelo = 0
@@ -13,7 +13,7 @@ class simulationCal:
     #calculation: projectile part
     def projectileCal(self):
         #if self.y_axis/self.x_axis > math.cos(60 * (math.pi/180))
-        self.initialVelo = math.sqrt((self.g * (self.x_axis ** 2)) / (2 * (math.cos(60 * (math.pi/180)) ** 2) * (self.x_axis * math.tan(60 * (math.pi/180)) - self.y_axis)))
+        self.initialVelo = math.sqrt((self.g * (self.x_axis ** 2)) / (2 * (math.cos(60 * (math.pi/180)) ** 2) * (self.x_axis * math.tan(60 * (math.pi/180)) - 0.2)))
         # self.initialVelo = math.sqrt(self.initialVelo)
         #print(initialVelo)
         

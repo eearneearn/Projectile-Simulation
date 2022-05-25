@@ -4,10 +4,6 @@ from tkinter import *
 from calculation import simulationCal
 import math
 import graphSim
-# import windows2
-
-# from tkinter import ttk
-# import tkinter as tk
 
 win1 = Tk()
 win1.title("The Amazing Circus: Projectile Simulation") #title
@@ -52,11 +48,11 @@ def open_popup():
     top.geometry("250x124")
     top.title("Warning!!")
     top.iconbitmap("warning.ico")
-    Label(top,text= "Out Of Range").place(x = 85 , y = 30)
-    Label(top,text= "Please Check Your Input Again").place(x = 40 , y = 60)
+    # Label(top,text= "Out Of Range").place(x = 85 , y = 30)
+    Label(top,text= "Please Check Your Input Again").place(x = 40 , y = 50)
     top.resizable(False,False)
     box_xaxis.delete(0,END)
-    box_yaxis.delete(0,END)
+    # box_yaxis.delete(0,END)
     box_mass.delete(0,END)
     box_springconst.delete(0,END)
     box_springAmount.delete(0,END)
@@ -103,16 +99,16 @@ def nextPage(event):
 def saveData(event):
     checkInput = False
     try:
-        if 0<=float(box_xaxis.get())<=10:
+        if 0<=float(box_xaxis.get())<=3.26:
             xaxis = float(box_xaxis.get())
             print(xaxis)
         else:
             checkInput=True
-        if 0<=float(box_yaxis.get())<=10:
-            yaxis = float(box_yaxis.get())
-            print(yaxis)
-        else:
-            checkInput=True
+        # if float(box_yaxis.get())==0.2:
+        #     yaxis = float(box_yaxis.get())
+        #     print(yaxis)
+        # else:
+        #     checkInput=True
         if 0 < float(box_mass.get()) <= 1000:
             mass = float(box_mass.get())
             print(mass)
@@ -131,24 +127,24 @@ def saveData(event):
         if checkInput:
             open_popup()
         
-        if yaxis/xaxis > math.cos(60 * (math.pi/180)):
-            open_popup()
+        # if yaxis/xaxis > math.cos(60 * (math.pi/180)):
+        #     open_popup()
 
-        distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
+        distanceX = simulationCal(xaxis,springconst,springAmount,9.81,mass)
         initialVelo = distanceX.projectileCal()
         lenX = distanceX.springCal()
         time = distanceX.timeCal()
         file = open("saveData.txt","w")
     
         file.write("x axis: " + str(xaxis) + " m" + "\n")
-        file.write("y axis: " + str(yaxis) + " m" + "\n")
+        file.write("y axis: " + "0.2" + " m" + "\n")
         file.write("mass: " + str(mass) + " g"+ "\n")
         file.write("spring constant: " + str(springconst) + " N/m" + "\n")
         file.write("spring amount: " + str(springAmount) + "\n")
         file.write("initial velocity: " + str(initialVelo) + " m/s" + "\n")
         file.write("time: " + str(time) + " s" + "\n")
         file.write("spring length: " + str(lenX) + " m" + "\n")
-        
+        file.write("------------------------------------------------------" + "\n")
         file.close()
 
     except ValueError:
@@ -164,7 +160,7 @@ def button_clear(event):
     box_timeLabel.config(state='normal')
     box_springLenLabel.config(state='normal')
     box_xaxis.delete(0,END)
-    box_yaxis.delete(0,END)
+    # box_yaxis.delete(0,END)
     box_mass.delete(0,END)
     box_springconst.delete(0,END)
     box_springAmount.delete(0,END)
@@ -183,11 +179,11 @@ def button_function(event): #check range
             print(xaxis)
         else:
             checkInput=True
-        if 0<=float(box_yaxis.get())<=10:
-            yaxis = float(box_yaxis.get())
-            print(yaxis)
-        else:
-            checkInput=True
+        # if 0<=float(box_yaxis.get())<=10:
+        #     yaxis = float(box_yaxis.get())
+        #     print(yaxis)
+        # else:
+        #     checkInput=True
         if 0 < float(box_mass.get()) <= 1000:
             mass = float(box_mass.get())
             print(mass)
@@ -203,10 +199,12 @@ def button_function(event): #check range
             print(springAmount)
         else:
             checkInput=True
-        if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
+        # if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
+        #     open_popup()
+        if checkInput:
             open_popup()
 
-        distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
+        distanceX = simulationCal(xaxis,springconst,springAmount,9.81,mass)
         initialVelo = distanceX.projectileCal()
         lenX = distanceX.springCal()
         time = distanceX.timeCal()
@@ -234,11 +232,11 @@ def showGraph(event):
             print(xaxis)
         else:
             checkInput=True
-        if 0<=float(box_yaxis.get())<=10:
-            yaxis = float(box_yaxis.get())
-            print(yaxis)
-        else:
-            checkInput=True
+        # if 0<=float(box_yaxis.get())<=10:
+        #     yaxis = float(box_yaxis.get())
+        #     print(yaxis)
+        # else:
+        #     checkInput=True
         if 0 < float(box_mass.get()) <= 1000:
             mass = float(box_mass.get())
             print(mass)
@@ -254,12 +252,14 @@ def showGraph(event):
             print(springAmount)
         else:
             checkInput=True
-        if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
+        # if checkInput or yaxis/xaxis > math.cos(60 * (math.pi/180)):
+        #     open_popup()
+        if checkInput:
             open_popup()
 
-        distanceX = simulationCal(xaxis,yaxis,springconst,springAmount,9.81,mass)
+        distanceX = simulationCal(xaxis,springconst,springAmount,9.81,mass)
         initialVelo = float(distanceX.projectileCal())
-        graphSim.showGraph(initialVelo, yaxis)
+        graphSim.showGraph(initialVelo, 0.2)
         
     except ValueError:
         open_popup()
@@ -297,18 +297,11 @@ member = PhotoImage(file="memberbutton.png") # set image path
 m = canvas.create_image(180,100,image=member)
 canvas.tag_bind(m, "<Button-1>", nextPage)
 
-# next = PhotoImage(file="ClearButton.png") # set image path
-# n = canvas.create_image(1130,350,image=clear)
-# canvas.tag_bind(n, "<Button-1>", nextPage)
-
-# box_xaxis = Entry (win1) 
-# canvas.create_window(1100, 120, window=box_xaxis)
-
 box_xaxis = Entry(win1)
 box_xaxis.place(x = 1092,y = 92,width=45,height=20)
 
-box_yaxis = Entry(win1)
-box_yaxis.place(x = 1092,y = 120,width=45,height=20)
+# box_yaxis = Entry(win1)
+# box_yaxis.place(x = 1092,y = 120,width=45,height=20)
 
 box_mass = Entry(win1)
 box_mass.place(x = 1092,y = 168,width=45,height=20)
